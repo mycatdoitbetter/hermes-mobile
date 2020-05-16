@@ -3,10 +3,10 @@ import React from 'react';
 import { LoginInput, InputLabel, InputContainer } from './styles';
 
 const Input = ({ ...props }) => {
-  const { text } = props;
+  const { label } = props;
   return (
     <InputContainer>
-      <InputLabel>{text}</InputLabel>
+      <InputLabel>{label}</InputLabel>
       <LoginInput {...props} autoCorrect={false} />
     </InputContainer>
   );

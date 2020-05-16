@@ -1,14 +1,27 @@
 import React from 'react';
-import { Image } from 'react-native';
-import images from '../../utils/images';
-import { Container } from './styles';
 
-const ForgotPassword = () => {
+import images from '../../utils/images';
+import {
+  Container,
+  ImagePadlock,
+  AvoidingView,
+  RecoveryButton,
+  RecoveryText,
+  TextRecoveryButton,
+} from './styles';
+import Input from '../../components/Input';
+
+export default function ForgotPassword() {
   return (
     <Container>
-      <Image style={{ width: 250, height: 250 }} source={images.padLock} />
+      <AvoidingView>
+        <ImagePadlock source={images.padLock} />
+        <RecoveryText numberOfLines={2}>Recupere sua senha!</RecoveryText>
+        <Input label="Email" keyboardType="email-address" />
+        <RecoveryButton>
+          <TextRecoveryButton>Confirmar</TextRecoveryButton>
+        </RecoveryButton>
+      </AvoidingView>
     </Container>
   );
-};
-
-export default ForgotPassword;
+}

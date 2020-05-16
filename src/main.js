@@ -8,6 +8,16 @@ import ForgotPassword from './pages/ForgotPassword';
 
 const Stack = createStackNavigator();
 
+const headerConfig = (title) => ({
+  title,
+  headerStyle: {
+    elevation: 0,
+    backgroundColor: '#4BAF4F',
+  },
+  headerTintColor: '#fff',
+  headerTitleAlign: 'center',
+});
+
 function LoginStack() {
   return (
     <Stack.Navigator>
@@ -19,16 +29,7 @@ function LoginStack() {
       <Stack.Screen
         name="ForgotPassword"
         component={ForgotPassword}
-        options={{
-          title: 'Recuperação de senha',
-          cardShadowEnabled: false,
-          headerStyle: {
-            backgroundColor: '#4BAF4F',
-            shadowOpacity: 0,
-          },
-          headerTintColor: '#fff',
-          headerTitleAlign: 'cente',
-        }}
+        options={headerConfig('Esqueceu sua senha?')}
       />
     </Stack.Navigator>
   );

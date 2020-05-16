@@ -29,13 +29,13 @@ export default function Login({ navigation }) {
         <AvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <LogoAndNameImage source={images.logoAndName} />
           <Input
-            text="CPF"
+            label="CPF"
             keyboardType="number-pad"
             onChangeText={(text) => formatCPF(text)}
             value={cpf}
           />
           <Input
-            text="Senha"
+            label="Senha"
             secureTextEntry
             value={password}
             onChangeText={(text) => setPassword(text)}
