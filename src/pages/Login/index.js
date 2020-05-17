@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-
+import axios from 'axios';
+import api from '../../services/api';
+import {
+  storeDataObject,
+  storeDataString,
+  getDataObject,
+  removeData,
+} from '../../storage';
 import {
   Container,
   LogoAndNameImage,
@@ -23,6 +30,20 @@ export default function Login({ navigation }) {
     setCpf(text.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'));
   }
 
+  async function handleLogin(userCPF, userPassword) {
+    try {
+      const response = await api.post('/sessions', {
+        cpf: userCPF,
+        password: userPassword,
+      });
+
+      storeDataObject('user', response.data.user);
+      storeDataString('token', response.data.token);
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+
   return (
     <>
       <Container>
@@ -40,7 +61,7 @@ export default function Login({ navigation }) {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <SubmitButton>
+          <SubmitButton onPress={() => handleLogin(cpf, password)}>
             <SubmitText>Acessar</SubmitText>
           </SubmitButton>
         </AvoidingView>
