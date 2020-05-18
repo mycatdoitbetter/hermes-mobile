@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-// import { DeliverymanTabs } from './routes';
+import { DeliverymanTabs } from './routes';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 
@@ -35,9 +35,10 @@ function LoginStack() {
   );
 }
 
-export default () => (
-  <NavigationContainer>
-    <LoginStack />
-    {/* <DeliverymanTabs /> */}
-  </NavigationContainer>
-);
+export default ({ signed }) => {
+  return (
+    <NavigationContainer>
+      {signed ? <DeliverymanTabs /> : <LoginStack />}
+    </NavigationContainer>
+  );
+};

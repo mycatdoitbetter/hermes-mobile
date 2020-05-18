@@ -20,13 +20,14 @@ export const storeDataObject = async (key, value) => {
 export const getDataString = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);
-    console.log(value);
-    if (value !== null) {
-      // return value;
+
+    if (value) {
+      return value;
     }
-    // return value;
+    return false;
   } catch (e) {
     console.log(e);
+    return false;
   }
 };
 

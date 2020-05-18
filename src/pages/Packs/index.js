@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Button } from 'react-native';
+import { useDispatch } from 'react-redux';
 
-// import { Container } from './styles';
+import { signOut } from '../../store/modules/auth/actions';
 
 export default function Packs() {
+  const dispatch = useDispatch();
   return (
     <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}>
-      <Text>Packs</Text>
+      <Button title="logout" onPress={() => dispatch(signOut())} />
     </View>
   );
 }
