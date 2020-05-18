@@ -70,7 +70,7 @@ export function DeliverymanTabs() {
       <Tab.Screen
         name="Profile"
         component={Profile}
-        options={iconTabConfig('Entregas', 'user')}
+        options={iconTabConfig('Perfil', 'user')}
       />
     </Tab.Navigator>
   );

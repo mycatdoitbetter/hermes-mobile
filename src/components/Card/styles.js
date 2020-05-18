@@ -2,12 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-export const Container = styled.View`
-  flex: 1;
-  background-color: #4baf4f;
-`;
-
-export const PackContainer = styled.View`
+export const CardContainer = styled.View`
   width: 80%;
   background-color: #f3f9e3;
   height: 168px;
@@ -16,7 +11,7 @@ export const PackContainer = styled.View`
   align-self: center;
 `;
 
-export const PackTitle = styled.Text`
+export const CardTitle = styled.Text`
   font-weight: bold;
   color: #314e5e;
   font-size: 16px;
@@ -25,7 +20,7 @@ export const PackTitle = styled.Text`
   margin-top: -40px;
   width: 65%;
 `;
-export const PackDetail = styled.Text`
+export const CardDetail = styled.Text`
   font-weight: bold;
   color: #666666;
   font-size: 16px;
@@ -34,7 +29,7 @@ export const PackDetail = styled.Text`
   margin: 5px;
   margin-left: 10px;
 `;
-export const PackDescription = styled.Text`
+export const CardDescription = styled.Text`
   font-weight: bold;
   color: #314e5e;
   font-size: 16px;
@@ -42,7 +37,7 @@ export const PackDescription = styled.Text`
   align-self: flex-start;
   margin: 10px;
 `;
-export const PackDetails = styled.View`
+export const CardDetails = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -64,4 +59,4 @@ export const InfoIcon = styled(Icon).attrs({ name: 'info', size: 27 })`
   margin: 10px;
 `;
 
-export const PackList = styled(FlatList)``;
+export const CardList = styled(FlatList)``;
