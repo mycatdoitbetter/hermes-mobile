@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {} from 'react-native';
 
-// import { Container } from './styles';
+import { Container } from './styles';
+import Logo from '../../utils/logo';
+import images from '../../utils/images';
 
 export default function Problems() {
   return (
-    <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}>
-      <Text>Problems</Text>
-    </View>
+    <Container>
+      <Logo source={images.logo} />
+    </Container>
   );
 }

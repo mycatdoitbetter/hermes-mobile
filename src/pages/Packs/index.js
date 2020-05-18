@@ -1,14 +1,20 @@
 import React from 'react';
-import { View, Button } from 'react-native';
-import { useDispatch } from 'react-redux';
+import {} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { signOut } from '../../store/modules/auth/actions';
+import {} from '../../store/modules/auth/actions';
+
+import { Container } from './styles';
+import Logo from '../../utils/logo';
+import images from '../../utils/images';
 
 export default function Packs() {
-  const dispatch = useDispatch();
+  // const user = useSelector((state) => state.user.profile);
+
+  // const dispatch = useDispatch();
   return (
-    <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}>
-      <Button title="logout" onPress={() => dispatch(signOut())} />
-    </View>
+    <Container>
+      <Logo source={images.logo} />
+    </Container>
   );
 }
