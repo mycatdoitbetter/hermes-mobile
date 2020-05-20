@@ -14,14 +14,12 @@ import Input from '../../components/Input';
 export default function ForgotPassword() {
   return (
     <Container>
-      <AvoidingView>
-        <ImagePadlock source={images.padLock} />
-        <RecoveryText numberOfLines={2}>Recupere sua senha!</RecoveryText>
-        <Input label="Email" keyboardType="email-address" />
-        <RecoveryButton>
-          <TextRecoveryButton>Confirmar</TextRecoveryButton>
-        </RecoveryButton>
-      </AvoidingView>
+      <ImagePadlock source={images.padLock} />
+      <RecoveryText numberOfLines={2}>Recupere sua senha!</RecoveryText>
+      <Input label="Email" keyboardType="email-address" />
+      <RecoveryButton>
+        <TextRecoveryButton>Confirmar</TextRecoveryButton>
+      </RecoveryButton>
     </Container>
   );
 }

@@ -2,17 +2,19 @@ import styled from 'styled-components/native';
 
 import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   background-color: #4baf4f;
+  padding-top: 30px;
   flex: 1;
 `;
 
 export const ImagePadlock = styled.Image`
-  width: 250px;
-  height: 250px;
+  width: 220px;
+  height: 220px;
   align-self: center;
-  margin-top: 50px;
-  margin-bottom: -30px;
+
+  /* margin-top: 50px; */
+  /* margin-bottom: -30px; */
 `;
 
 export const AvoidingView = styled.KeyboardAvoidingView``;
@@ -22,6 +24,7 @@ export const RecoveryButton = styled(RectButton)`
   height: 40px;
   background-color: #314e5e;
   align-self: center;
+  margin-bottom: 40px;
   margin-top: 20px;
   border-radius: 8px;
   justify-content: center;

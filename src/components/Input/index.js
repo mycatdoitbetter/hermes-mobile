@@ -7,7 +7,7 @@ const Input = ({ ...props }) => {
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
-      <LoginInput {...props} autoCorrect={false} />
+      <LoginInput {...props} autoCorrect={false} autoCapitalize="none" />
     </InputContainer>
   );
 };

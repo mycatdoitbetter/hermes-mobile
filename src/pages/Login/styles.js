@@ -25,7 +25,8 @@ export const LoginText = styled.Text`
   color: #fff;
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 5px;
+  position: relative;
+  /* bottom: 0px; */
 `;
 
 export const SubmitButton = styled(RectButton)`
@@ -34,7 +35,7 @@ export const SubmitButton = styled(RectButton)`
   border-radius: 8px;
   width: 75%;
   height: 45px;
-  margin: 35px;
+  margin: 20px;
   justify-content: center;
   align-items: center;
 `;

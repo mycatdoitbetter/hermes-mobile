@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import api from '../../services/api';
-import { storeDataObject, storeDataString, getDataString } from '../../storage';
+import { useDispatch } from 'react-redux';
+
 import {
   Container,
   LogoAndNameImage,
@@ -19,8 +18,6 @@ import { signInRequest } from '../../store/modules/auth/actions';
 
 export default function Login({ navigation }) {
   const [cpf, setCpf] = useState('');
-  const isSigned = useSelector(({ auth }) => auth.signed);
-  const token = useSelector((state) => state.auth.token);
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
@@ -30,34 +27,8 @@ export default function Login({ navigation }) {
   }
 
   function Acess() {
-    console.warn(`signed ANTES${isSigned} R O TOEKN ${token}`);
     dispatch(signInRequest(cpf, password));
-    console.warn(`signed DEPOIS${isSigned} E O TOKEN ${token}`);
   }
-
-  // async function handleLogin(userCPF, userPassword) {
-  //   try {
-  //     const response = await api.post('/sessions', {
-  //       cpf: userCPF,
-  //       password: userPassword,
-  //     });
-
-  //     console.log(`resposta da requisição: ${response.status}`);
-  //     if (response.status === 200) {
-  //       storeDataString('signed', 'true');
-  //     } else {
-  //       storeDataString('signed', 'false');
-  //     }
-
-  //     storeDataObject('user', response.data.user);
-  //     storeDataString('token', response.data.token);
-  //     const token = await getDataString('token');
-
-  //     api.defaults.headers.Authorization = `Berear ${token}`;
-  //   } catch (e) {
-  //     console.warn(e);
-  //   }
-  // }
 
   return (
     <Container>
@@ -78,12 +49,12 @@ export default function Login({ navigation }) {
         <SubmitButton onPress={() => Acess()}>
           <SubmitText>Acessar</SubmitText>
         </SubmitButton>
+        <ForgotPasswordTouchable
+          onPress={() => navigation.navigate('ForgotPassword')}
+        >
+          <LoginText>Esqueceu sua senha?</LoginText>
+        </ForgotPasswordTouchable>
       </AvoidingView>
-      <ForgotPasswordTouchable
-        onPress={() => navigation.navigate('ForgotPassword')}
-      >
-        <LoginText>Esqueceu sua senha?</LoginText>
-      </ForgotPasswordTouchable>
     </Container>
   );
 }
