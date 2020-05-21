@@ -1,66 +1,55 @@
 import React from 'react';
-import { TouchableOpacity, FlatList, Text, View } from 'react-native';
 
-import { ModalTitle, ConfigModal, IconProfile } from './styles';
+import {
+  ModalTitle,
+  ConfigModal,
+  IconProfile,
+  List,
+  ItemContainer,
+  TextItem,
+  FlagItem,
+  TouchableModalButton,
+} from './styles';
 
-export const Modal = ({ isVisible, title, toogleFunction }) => (
-  <ConfigModal isVisible={isVisible}>
-    <TouchableOpacity
-      style={{ padding: 10, position: 'absolute', top: 0, left: 0 }}
-      onPress={() => {
-        toogleFunction(false);
-      }}
-    >
-      <IconProfile name="x" />
-    </TouchableOpacity>
+export function Modal({ isVisible, title, toogleFunction }) {
+  return (
+    <ConfigModal isVisible={isVisible}>
+      <TouchableModalButton
+        onPress={() => {
+          toogleFunction(false);
+        }}
+      >
+        <IconProfile name="x" />
+      </TouchableModalButton>
 
-    <ModalTitle>{title}</ModalTitle>
-  </ConfigModal>
+      <ModalTitle>{title}</ModalTitle>
+    </ConfigModal>
+  );
+}
+
+const ListMount = (item) => (
+  <ItemContainer>
+    <TextItem>{item.label}</TextItem>
+    <FlagItem code={item.code} />
+  </ItemContainer>
 );
 
-export const ModalList = ({ isVisible, title, toogleFunction, data }) => (
-  <ConfigModal isVisible={isVisible}>
-    <TouchableOpacity
-      style={{ padding: 10, position: 'absolute', top: 0, left: 0 }}
-      onPress={() => {
-        toogleFunction(false);
-      }}
-    >
-      <IconProfile name="x" />
-    </TouchableOpacity>
-    <FlatList
-      data={data}
-      style={{
-        backgroundColor: '#2222',
-        width: '80%',
-        marginTop: 60,
-        marginBottom: 20,
-      }}
-      renderItem={({ item }) => (
-        <View
-          style={{
-            marginVertical: 5,
-          }}
-        >
-          <Text>{item.label}</Text>
-        </View>
-      )}
-      keyExtractor={({ code }) => String(code)}
-    />
-    <ModalTitle>{title}</ModalTitle>
-  </ConfigModal>
-);
-export const ModalInputs = ({ isVisible, title, toogleFunction }) => (
-  <ConfigModal isVisible={isVisible}>
-    <TouchableOpacity
-      style={{ padding: 10, position: 'absolute', top: 0, left: 0 }}
-      onPress={() => {
-        toogleFunction(false);
-      }}
-    >
-      <IconProfile name="x" />
-    </TouchableOpacity>
-
-    <ModalTitle>{title}</ModalTitle>
-  </ConfigModal>
-);
+export function ModalList({ isVisible, title, toogleFunction, data }) {
+  return (
+    <ConfigModal isVisible={isVisible}>
+      <TouchableModalButton
+        onPress={() => {
+          toogleFunction(false);
+        }}
+      >
+        <IconProfile name="x" />
+      </TouchableModalButton>
+      <List
+        data={data}
+        renderItem={({ item }) => ListMount(item)}
+        keyExtractor={({ code }) => String(code)}
+      />
+      <ModalTitle>{title}</ModalTitle>
+    </ConfigModal>
+  );
+}

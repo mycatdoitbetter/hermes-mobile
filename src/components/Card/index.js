@@ -10,30 +10,32 @@ import {
   CardDescription,
 } from './styles';
 
-export const CardPack = (item) => (
-  <CardContainer>
-    <Touch>
-      <InfoIcon />
-    </Touch>
-    <CardTitle>
-      {item.start_date ? 'Item retirado' : 'Disponível para entrega'}
-    </CardTitle>
-    <CardDetails>
-      <CardDetail>
-        Destinatário:{'  '}
-        <CardDescription>{item.recipient.name}</CardDescription>{' '}
-      </CardDetail>
-      <CardDetail>
-        Produto:
-        {'  '}
-        <CardDescription>{item.product}</CardDescription>{' '}
-      </CardDetail>
-    </CardDetails>
-    <Touch>
-      <ReportProblem>Relatar Problemas</ReportProblem>
-    </Touch>
-  </CardContainer>
-);
+export function CardPack(item, nav) {
+  return (
+    <CardContainer>
+      <Touch>
+        <InfoIcon />
+      </Touch>
+      <CardTitle>
+        {item.start_date ? 'Item retirado' : 'Disponível para entrega'}
+      </CardTitle>
+      <CardDetails>
+        <CardDetail>
+          Destinatário:{'  '}
+          <CardDescription>{item.recipient.name}</CardDescription>{' '}
+        </CardDetail>
+        <CardDetail>
+          Produto:
+          {'  '}
+          <CardDescription>{item.product}</CardDescription>{' '}
+        </CardDetail>
+      </CardDetails>
+      <Touch onPress={() => nav.navigate('Report')}>
+        <ReportProblem>Relatar Problemas</ReportProblem>
+      </Touch>
+    </CardContainer>
+  );
+}
 
 export const CardProblem = (item) => (
   <CardContainer>

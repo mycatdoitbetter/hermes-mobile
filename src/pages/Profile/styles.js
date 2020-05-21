@@ -6,7 +6,6 @@ import Modal from 'react-native-modal';
 export const Container = styled.ScrollView`
   flex: 1;
   background-color: #4baf4f;
-  /* margin-top: -20px; */
 `;
 
 export const Avatar = styled.Image`
@@ -18,7 +17,6 @@ export const Avatar = styled.Image`
 `;
 
 export const AvatarView = styled.View`
-  /* width: 100%; */
   background-color: rgba(49, 78, 94, 0.2);
   margin: 20px;
 

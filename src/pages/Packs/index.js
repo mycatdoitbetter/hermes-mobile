@@ -9,7 +9,7 @@ import Logo from '../../utils/logo';
 import images from '../../utils/images';
 import { CardPack } from '../../components/Card';
 
-export default function Packs() {
+export default function Packs({ navigation }) {
   // const user = useSelector((state) => state.user.profile);
   const packsMock = [
     {
@@ -119,7 +119,7 @@ export default function Packs() {
   ];
 
   const renderPacks = ({ item }) => {
-    return CardPack(item);
+    return CardPack(item, navigation);
   };
 
   return (

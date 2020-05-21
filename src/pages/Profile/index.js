@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import Flag from 'react-native-flags';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../store/modules/auth/actions';
@@ -29,9 +29,23 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   const languages = [
-    { label: 'Português', code: 'BR' },
-    { label: 'English', code: 'US' },
+    { label: 'Português do Brasil', code: 'BR' },
+    { label: 'Inglês', code: 'US' },
   ];
+
+  const alternativeButtonStyle = {
+    paddingBottom: 5,
+    paddingTop: 5,
+    marginBottom: 30,
+    marginTop: 20,
+    width: '40%',
+
+    justifyContent: 'space-around',
+    alignSelf: 'center',
+
+    backgroundColor: '#314E5E',
+    borderRadius: 8,
+  };
 
   const LabelProfile = ({ iconName, labelName }) => (
     <Label>
@@ -99,18 +113,7 @@ export default function Profile() {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => dispatch(signOut())}>
-          <ConfigView
-            style={{
-              paddingBottom: 5,
-              paddingTop: 5,
-              marginBottom: 30,
-
-              justifyContent: 'space-around',
-
-              backgroundColor: '#314E5E',
-              borderRadius: 8,
-            }}
-          >
+          <ConfigView style={alternativeButtonStyle}>
             <ProfileDataFieldText
               style={{
                 fontWeight: 'bold',

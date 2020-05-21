@@ -10,6 +10,7 @@ import Problems from './pages/Problems';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
+import ReportProblem from './pages/ReportProblem';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,6 +38,23 @@ const tabConfig = () => ({
   style: { backgroundColor: '#4BAF4F', borderTopColor: '#4BAF4F' },
 });
 
+export function PackStack() {
+  return (
+    <Stack.Navigator initialRouteName="Packs">
+      <Stack.Screen
+        name="Report"
+        component={ReportProblem}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Packs"
+        component={Packs}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 export function LoginStack() {
   return (
     <Stack.Navigator>
@@ -59,7 +77,7 @@ export function DeliverymanTabs() {
     <Tab.Navigator tabBarOptions={tabConfig()}>
       <Tab.Screen
         name="Packs"
-        component={Packs}
+        component={PackStack}
         options={iconTabConfig('Entregas', 'package')}
       />
       <Tab.Screen
@@ -72,6 +90,11 @@ export function DeliverymanTabs() {
         component={Profile}
         options={iconTabConfig('Perfil', 'user')}
       />
+      {/* <Stack.Screen
+        name="Report"
+        component={ReportProblem}
+        options={{ headerShown: false }}
+      /> */}
     </Tab.Navigator>
   );
 }
