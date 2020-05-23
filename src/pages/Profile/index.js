@@ -138,7 +138,6 @@ export default function Profile() {
         title="Linguagens"
         toogleFunction={setLanguageModalVisible}
         data={languages}
-        // Container={ModalLanguageList}
       />
     </Container>
   );

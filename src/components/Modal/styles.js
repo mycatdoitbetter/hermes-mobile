@@ -10,8 +10,8 @@ export const ModalTitle = styled.Text`
   top: 0;
   margin: 10px;
 
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 25px;
+  /* font-weight: bold; */
   color: #fff;
 `;
 
@@ -25,10 +25,13 @@ export const ConfigModal = styled(Modal).attrs({
 })`
   flex: 1;
   background-color: #4baf4f;
+
   justify-content: center;
   align-items: center;
   border-radius: 7px;
-  margin: 140px 20px 140px;
+
+  margin: 160px 20px 160px;
+  padding: 5px;
 `;
 
 export const TouchableModalButton = styled.TouchableOpacity`
@@ -63,4 +66,29 @@ export const FlagItem = styled(Flag)`
   width: 50px;
   height: 30px;
   margin-right: 20px;
+`;
+
+export const Label = styled.Text`
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+`;
+
+export const Description = styled.Text`
+  color: #ffff;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  /* margin-bottom: 10px; */
+`;
+
+export const StatusText = styled.Text`
+  color: #f97068;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0;
+  font-weight: bold;
+  margin-bottom: 10px;
 `;

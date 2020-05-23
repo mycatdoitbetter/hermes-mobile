@@ -14,6 +14,7 @@ export default function Packs() {
   const packsMock = [
     {
       id: 1,
+      isProblem: true,
       title: 'Titulo do problema',
       description: 'Corpo do problema',
       packages: {

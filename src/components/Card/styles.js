@@ -1,11 +1,13 @@
 import styled from 'styled-components/native';
-import { FlatList } from 'react-native';
+import { FlatList, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 export const CardContainer = styled.View`
   width: 80%;
-  background-color: #f3f9e3;
-  height: 168px;
+  background-color: #F3F9E3;
+  /* background-color: ${(props) => (props.cor ? 'green' : 'purple')}; */
+  height: 169px;
+
   margin: 10px;
   border-radius: 8px;
   align-self: center;

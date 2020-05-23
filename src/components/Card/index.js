@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Animated } from 'react-native';
+import { Easing } from 'react-native-reanimated';
 import {
   CardContainer,
   CardTitle,
@@ -10,10 +12,21 @@ import {
   CardDescription,
 } from './styles';
 
-export function CardPack(item, nav) {
+export function CardPack(
+  item,
+  navigation,
+  setIsModalVisible,
+  isModalVisible,
+  setPackOnDetail
+) {
   return (
     <CardContainer>
-      <Touch>
+      <Touch
+        onPress={() => {
+          setPackOnDetail(item);
+          setIsModalVisible(!isModalVisible);
+        }}
+      >
         <InfoIcon />
       </Touch>
       <CardTitle>
@@ -30,33 +43,41 @@ export function CardPack(item, nav) {
           <CardDescription>{item.product}</CardDescription>{' '}
         </CardDetail>
       </CardDetails>
-      <Touch onPress={() => nav.navigate('Report')}>
-        <ReportProblem>Relatar Problemas</ReportProblem>
+      <Touch onPress={() => navigation.navigate('Problems')}>
+        {item.isProblem === false ? (
+          <ReportProblem>Relatar Problemas</ReportProblem>
+        ) : (
+          <></>
+        )}
       </Touch>
     </CardContainer>
   );
 }
 
-export const CardProblem = (item) => (
-  <CardContainer>
-    <Touch>
-      <InfoIcon />
-    </Touch>
+export function CardProblem(item) {
+  return (
+    <CardContainer>
+      <Touch>
+        <InfoIcon />
+      </Touch>
 
-    <CardTitle>{item.title}</CardTitle>
-    <CardDetails>
-      <CardDetail>
-        Destinatário:{'  '}
-        <CardDescription>{item.packages.recipients.name}</CardDescription>{' '}
-      </CardDetail>
-      <CardDetail>
-        Produto:
-        {'  '}
-        <CardDescription>{item.packages.product}</CardDescription>{' '}
-      </CardDetail>
-    </CardDetails>
-    <Touch>
-      <ReportProblem>Relatar Problemas</ReportProblem>
-    </Touch>
-  </CardContainer>
-);
+      <CardTitle>{item.title}</CardTitle>
+      <CardDetails>
+        <CardDetail>
+          Destinatário:{'  '}
+          <CardDescription>
+            {item.packages.recipients.name}
+          </CardDescription>{' '}
+        </CardDetail>
+        <CardDetail>
+          Produto:
+          {'  '}
+          <CardDescription>{item.packages.product}</CardDescription>{' '}
+        </CardDetail>
+      </CardDetails>
+      <Touch>
+        <ReportProblem>Relatar Problemas</ReportProblem>
+      </Touch>
+    </CardContainer>
+  );
+}
