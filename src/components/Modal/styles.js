@@ -5,6 +5,20 @@ import { FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import Flag from 'react-native-flags';
 
+export const ModalView = styled.View`
+  /* flex: 1; */
+  background-color: #4baf4f;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  border-radius: 7px;
+  height: 260px;
+  width: 95%;
+
+  /* margin: auto; */
+  padding: 5px;
+`;
+
 export const ModalTitle = styled.Text`
   position: absolute;
   top: 0;
@@ -22,17 +36,7 @@ export const IconProfile = styled(Icon).attrs({ size: 25, color: '#E5E5E5' })`
 export const ConfigModal = styled(Modal).attrs({
   animationOutTiming: 700,
   backdropTransitionOutTiming: 1400,
-})`
-  flex: 1;
-  background-color: #4baf4f;
-
-  justify-content: center;
-  align-items: center;
-  border-radius: 7px;
-
-  margin: 160px 20px 160px;
-  padding: 5px;
-`;
+})``;
 
 export const TouchableModalButton = styled.TouchableOpacity`
   position: absolute;
@@ -41,7 +45,9 @@ export const TouchableModalButton = styled.TouchableOpacity`
   padding: 10px;
 `;
 
-export const List = styled(FlatList).attrs({ justifyContent: 'center' })`
+export const List = styled(FlatList).attrs({
+  justifyContent: 'center',
+})`
   width: 80%;
 `;
 
@@ -88,6 +94,7 @@ export const StatusText = styled.Text`
   color: #f97068;
   font-size: 18px;
   position: absolute;
+  text-align: center;
   bottom: 0;
   font-weight: bold;
   margin-bottom: 10px;

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Text } from 'react-native';
 import {
@@ -12,20 +13,23 @@ import {
   Label,
   Description,
   StatusText,
+  ModalView,
 } from './styles';
 
 export function Modal({ isVisible, title, toogleFunction }) {
   return (
     <ConfigModal isVisible={isVisible}>
-      <TouchableModalButton
-        onPress={() => {
-          toogleFunction(false);
-        }}
-      >
-        <IconProfile name="x" />
-      </TouchableModalButton>
+      <ModalView>
+        <TouchableModalButton
+          onPress={() => {
+            toogleFunction(false);
+          }}
+        >
+          <IconProfile name="x" />
+        </TouchableModalButton>
 
-      <ModalTitle>{title}</ModalTitle>
+        <ModalTitle>{title}</ModalTitle>
+      </ModalView>
     </ConfigModal>
   );
 }
@@ -40,19 +44,21 @@ const ListMount = (item) => (
 export function ModalList({ isVisible, title, toogleFunction, data }) {
   return (
     <ConfigModal isVisible={isVisible}>
-      <TouchableModalButton
-        onPress={() => {
-          toogleFunction(false);
-        }}
-      >
-        <IconProfile name="x" />
-      </TouchableModalButton>
-      <List
-        data={data}
-        renderItem={({ item }) => ListMount(item)}
-        keyExtractor={({ code }) => String(code)}
-      />
-      <ModalTitle>{title}</ModalTitle>
+      <ModalView>
+        <TouchableModalButton
+          onPress={() => {
+            toogleFunction(false);
+          }}
+        >
+          <IconProfile name="x" />
+        </TouchableModalButton>
+        <List
+          data={data}
+          renderItem={({ item }) => ListMount(item)}
+          keyExtractor={({ code }) => String(code)}
+        />
+        <ModalTitle>{title}</ModalTitle>
+      </ModalView>
     </ConfigModal>
   );
 }
@@ -68,27 +74,27 @@ const Status = ({ item }) => {
   console.warn(isProblem, isCanceled, already, dispatched);
   return (
     <StatusText>
-      {isProblem
-        ? 'Entrega com problemas!'
-        : isCanceled
+      {item.canceled_at
         ? 'Entrega cancelada'
-        : already && dispatched
+        : item.start_date && item.end_date
         ? 'Entrega realizada'
-        : already && !dispatched
-        ? 'Pronto para entrega'
-        : 'Entrega prevista'}
+        : item.start_date && !item.end_date
+        ? 'Entrega em andamento'
+        : 'Pronto para retirada'}
     </StatusText>
   );
 };
+
 export function ModalDetail({ isVisible, title, toogleFunction, item }) {
+  console.warn(item);
   item = {
-    address: `${item?.recipient?.street} - N° ${item?.recipient?.number},  ${item?.recipient?.complement}`,
-    complement: `${item?.recipient?.complement}`,
-    country: `Cidade: ${item?.recipient?.city} - ${item?.recipient?.state}`,
+    address: `${item?.recipients?.street} - N° ${item?.recipients?.number},  ${item?.recipients?.complement}`,
+    complement: `${item?.recipients?.complement}`,
+    country: `Cidade: ${item?.recipients?.city} - ${item?.recipients?.state}`,
     product: item?.product,
-    name: item?.recipient?.name,
-    cpf: item?.recipient?.cpf,
-    cep: item?.recipient?.cep,
+    name: item?.recipients?.name,
+
+    cep: item?.recipients?.cep,
     isProblem: item?.isProblem,
     isCanceled: item?.canceled_at === true,
     already: item?.start_date === true,
@@ -96,20 +102,22 @@ export function ModalDetail({ isVisible, title, toogleFunction, item }) {
   };
   return (
     <ConfigModal isVisible={isVisible}>
-      <ModalTitle>{title}</ModalTitle>
-      <TouchableModalButton
-        onPress={() => {
-          toogleFunction(false);
-        }}
-      >
-        <IconProfile name="x" />
-      </TouchableModalButton>
-      <Details detail={item.name} label="Destinatário" />
-      <Details detail={item.cpf} label="CPF" />
-      <Details detail={item.address} label="Endereço" />
-      <Details detail={item.cep} label="CEP" />
-      <Details detail={item.product} label="Produto" />
-      <Status item={item} />
+      <ModalView style={{ height: 400 }}>
+        <TouchableModalButton
+          onPress={() => {
+            toogleFunction(false);
+          }}
+        >
+          <IconProfile name="x" />
+        </TouchableModalButton>
+        <ModalTitle>{title}</ModalTitle>
+        <Details detail={item.name} label="Destinatário" />
+
+        <Details detail={item.address} label="Endereço" />
+        <Details detail={item.cep} label="CEP" />
+        <Details detail={item.product} label="Produto" />
+        <Status item={item} />
+      </ModalView>
     </ConfigModal>
   );
 }

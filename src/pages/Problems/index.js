@@ -9,7 +9,7 @@ import Logo from '../../utils/logo';
 import images from '../../utils/images';
 import { CardProblem } from '../../components/Card';
 
-export default function Packs() {
+export default function Packs({ navigation }) {
   // const user = useSelector((state) => state.user.profile);
   const packsMock = [
     {
@@ -51,7 +51,7 @@ export default function Packs() {
 
   const renderPacks = ({ item }) => {
     // console.warn(item);
-    return CardProblem(item);
+    return CardProblem(item, navigation);
   };
 
   // const dispatch = useDispatch();

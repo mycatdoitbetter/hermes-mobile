@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import ReportProblem from './pages/ReportProblem';
+import Reports from './pages/Reports';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,19 +43,18 @@ export function PackStack() {
   return (
     <Stack.Navigator initialRouteName="Packs">
       <Stack.Screen
-        name="Report"
-        component={ReportProblem}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="Packs"
         component={Packs}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Report"
+        component={ReportProblem}
+        options={headerConfig('Descreva o problema')}
+      />
     </Stack.Navigator>
   );
 }
-
 export function LoginStack() {
   return (
     <Stack.Navigator>
@@ -71,6 +71,22 @@ export function LoginStack() {
     </Stack.Navigator>
   );
 }
+export function ProblemStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Problems"
+        component={Problems}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Reports"
+        component={Reports}
+        options={headerConfig('Entenda o problema')}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export function DeliverymanTabs() {
   return (
@@ -82,7 +98,7 @@ export function DeliverymanTabs() {
       />
       <Tab.Screen
         name="Problems"
-        component={Problems}
+        component={ProblemStack}
         options={iconTabConfig('Problemas', 'frown')}
       />
       <Tab.Screen

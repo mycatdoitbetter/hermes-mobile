@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Animated } from 'react-native';
-import { Easing } from 'react-native-reanimated';
+/* eslint-disable no-nested-ternary */
+import React from 'react';
+
+import ShimmerPlaceHolder from 'react-native-shimmer-placeholder';
+
 import {
   CardContainer,
   CardTitle,
@@ -30,12 +32,19 @@ export function CardPack(
         <InfoIcon />
       </Touch>
       <CardTitle>
-        {item.start_date ? 'Item retirado' : 'Disponível para entrega'}
+        {item.canceled_at
+          ? 'Entrega cancelada'
+          : item.start_date && item.end_date
+          ? 'Entrega realizada'
+          : item.start_date && !item.end_date
+          ? 'Entrega em andamento'
+          : 'Pronto para retirada'}
       </CardTitle>
+
       <CardDetails>
         <CardDetail>
           Destinatário:{'  '}
-          <CardDescription>{item.recipient.name}</CardDescription>{' '}
+          <CardDescription>{item.recipients.name}</CardDescription>{' '}
         </CardDetail>
         <CardDetail>
           Produto:
@@ -43,18 +52,15 @@ export function CardPack(
           <CardDescription>{item.product}</CardDescription>{' '}
         </CardDetail>
       </CardDetails>
-      <Touch onPress={() => navigation.navigate('Problems')}>
-        {item.isProblem === false ? (
-          <ReportProblem>Relatar Problemas</ReportProblem>
-        ) : (
-          <></>
-        )}
+
+      <Touch onPress={() => navigation.navigate('Report')}>
+        <ReportProblem>Problemas com a entrega?</ReportProblem>
       </Touch>
     </CardContainer>
   );
 }
 
-export function CardProblem(item) {
+export function CardProblem(item, navigation) {
   return (
     <CardContainer>
       <Touch>
@@ -75,9 +81,37 @@ export function CardProblem(item) {
           <CardDescription>{item.packages.product}</CardDescription>{' '}
         </CardDetail>
       </CardDetails>
-      <Touch>
-        <ReportProblem>Relatar Problemas</ReportProblem>
+      <Touch onPress={() => navigation.navigate('Reports')}>
+        <ReportProblem>Entenda o problema</ReportProblem>
       </Touch>
+    </CardContainer>
+  );
+}
+
+export function ShimmerCard({ fetch }) {
+  return (
+    <CardContainer>
+      <InfoIcon />
+      <CardTitle>
+        <ShimmerPlaceHolder autoRun visible={fetch} />
+      </CardTitle>
+
+      <CardDetails>
+        <CardDetail>
+          <ShimmerPlaceHolder autoRun visible={fetch} />
+        </CardDetail>
+        <CardDetail>
+          <ShimmerPlaceHolder autoRun visible={fetch} />
+        </CardDetail>
+      </CardDetails>
+
+      <ReportProblem>
+        <ShimmerPlaceHolder
+          autoRun
+          visible={fetch}
+          style={{ flex: 1, borderRadius: 7 }}
+        />
+      </ReportProblem>
     </CardContainer>
   );
 }

@@ -3,6 +3,7 @@ import { FlatList, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 export const CardContainer = styled.View`
+
   width: 80%;
   background-color: #F3F9E3;
   /* background-color: ${(props) => (props.cor ? 'green' : 'purple')}; */
@@ -16,11 +17,10 @@ export const CardContainer = styled.View`
 export const CardTitle = styled.Text`
   font-weight: bold;
   color: #314e5e;
-  font-size: 16px;
+  font-size: 17px;
   align-self: center;
-  text-align: center;
-  margin-top: -40px;
-  width: 65%;
+  position: absolute;
+  top: 10;
 `;
 export const CardDetail = styled.Text`
   font-weight: bold;
@@ -35,9 +35,6 @@ export const CardDescription = styled.Text`
   font-weight: bold;
   color: #314e5e;
   font-size: 16px;
-  text-align: center;
-  align-self: flex-start;
-  margin: 10px;
 `;
 export const CardDetails = styled.View`
   flex: 1;
@@ -50,15 +47,21 @@ export const ReportProblem = styled.Text`
   color: #f97068;
   font-size: 16px;
   align-self: center;
+
+  /* position: absolute; */
   margin-bottom: 10px;
 `;
 
 export const Touch = styled.TouchableOpacity``;
 
 export const InfoIcon = styled(Icon).attrs({ name: 'info', size: 27 })`
-  color: #314e5e;
+  /* position: absolute; */
   align-self: flex-end;
-  margin: 10px;
+  top: 5px;
+  right: 5px;
+  /* color: #314e5e; */
+  /* align-self: flex-end; */
+  /* margin: 10px; */
 `;
 
 export const CardList = styled(FlatList)``;
