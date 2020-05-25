@@ -6,7 +6,7 @@ import { ModalDetail } from '../../components/Modal';
 import { Container, PackList } from './styles';
 import Logo from '../../utils/logo';
 import images from '../../utils/images';
-import { CardPack, ShimmerCard } from '../../components/Card';
+import { CardPack } from '../../components/Card';
 
 export default function Packs({ navigation }) {
   // const user = useSelector((state) => state.user.profile);
@@ -36,29 +36,21 @@ export default function Packs({ navigation }) {
     <Container>
       <Logo source={images.logo} />
 
-      {fetch ? (
-        <PackList
-          data={['1', '2', '3']}
-          renderItem={() => ShimmerCard(fetch)}
-          keyExtractor={(item) => String(item)}
-        />
-      ) : (
-        <PackList
-          data={packs}
-          refreshing={fetch}
-          onRefresh={() => getPacks()}
-          renderItem={({ item }) => {
-            return CardPack(
-              item,
-              navigation,
-              setIsModalVisible,
-              isModalVisible,
-              setPackOnDetail
-            );
-          }}
-          keyExtractor={({ id }) => String(id)}
-        />
-      )}
+      <PackList
+        data={packs}
+        refreshing={fetch}
+        onRefresh={() => getPacks()}
+        renderItem={({ item }) => {
+          return CardPack(
+            item,
+            navigation,
+            setIsModalVisible,
+            isModalVisible,
+            setPackOnDetail
+          );
+        }}
+        keyExtractor={({ id }) => String(id)}
+      />
 
       <ModalDetail
         isVisible={isModalVisible}

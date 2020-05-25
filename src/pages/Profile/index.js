@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Flag from 'react-native-flags';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { showImagePicker } from '../../config/imagePicker';
 import { signOut } from '../../store/modules/auth/actions';
+import { updateLocalAvatar } from '../../store/modules/user/actions';
 import { Modal, ModalList } from '../../components/Modal';
 import {
   Container,
@@ -18,10 +20,16 @@ import {
   ConfigView,
   ConfigSwitchTheme,
   IconProfile,
+  EditAvatarIcon,
 } from './styles';
 
 export default function Profile() {
+  const user = useSelector((state) => state.user.profile);
+  const avatar = useSelector((state) => state.user.avatar);
+  console.warn(user.avatar.url);
+
   const [theme, setTheme] = useState(true);
+  const [uploadedAvatar, setuploadedAvatar] = useState(avatar);
   const [isInfoModalVisible, setInfoModalVisible] = useState(false);
   const [isLanguageModalVisible, setLanguageModalVisible] = useState(false);
   const [actualLanguage, setActualLanguage] = useState('BR');
@@ -64,20 +72,33 @@ export default function Profile() {
   return (
     <Container>
       <AvatarView>
+        <TouchableOpacity
+          onPress={() => showImagePicker(setuploadedAvatar)}
+          style={{ position: 'absolute', top: 15, left: 15 }}
+        >
+          <EditAvatarIcon name="edit-3" />
+        </TouchableOpacity>
         <Avatar
-          source={{ uri: 'https://www.w3schools.com/w3images/avatar2.png' }}
+          resizeMode="cover"
+          source={
+            uploadedAvatar || {
+              uri: user.avatar.url,
+            }
+          }
         />
         <ProfileTextView>
-          <ProfileText>André Santos</ProfileText>
-          <ProfileText>Entregador</ProfileText>
+          <ProfileText numberOfLines={1}>{user.name.split(' ', 1)}</ProfileText>
+          <ProfileText>
+            {user.provider ? 'Admnistrador' : 'Entregador'}
+          </ProfileText>
         </ProfileTextView>
       </AvatarView>
 
       <LabelProfile iconName="user" labelName="Dados Pessoais" />
       <>
-        <FieldsProfile field="André Santos Castelo" iconName="user" />
-        <FieldsProfile field="andre@gmail.com" iconName="mail" />
-        <FieldsProfile field="123.123.123-12" iconName="credit-card" />
+        <FieldsProfile field={user.name} iconName="user" />
+        <FieldsProfile field={user.email} iconName="mail" />
+        <FieldsProfile field={user.cpf} iconName="credit-card" />
       </>
       <LabelProfile iconName="settings" labelName="Configurações" />
       <>

@@ -9,8 +9,9 @@ export const Container = styled.ScrollView`
 `;
 
 export const Avatar = styled.Image`
-  border-width: 2px;
-  border-color: #c4c4c4;
+  /* border-width: 2px; */
+  /* border-color: #c4c4c4; */
+  /* position: absolute; */
   width: 120px;
   height: 120px;
   border-radius: 60px;
@@ -27,17 +28,21 @@ export const AvatarView = styled.View`
 `;
 
 export const ProfileText = styled.Text`
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   text-align: center;
-  margin-left: 10px;
+  /* margin-left: 10px; */
+  /* width: 80%; */
   flex-direction: row;
   color: #e5e5e5;
 `;
 
 export const ProfileTextView = styled.View`
-  padding: 45px;
-  flex-direction: column;
+  /* padding: 45px; */
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  /* flex-direction: column; */
 `;
 
 export const Label = styled.View`
@@ -64,6 +69,10 @@ export const ProfileDataFieldView = styled.View`
 
 export const ProfileDataFieldIcon = styled(Icon).attrs({
   size: 25,
+  color: '#E5E5E5',
+})``;
+export const EditAvatarIcon = styled(Icon).attrs({
+  size: 20,
   color: '#E5E5E5',
 })``;
 

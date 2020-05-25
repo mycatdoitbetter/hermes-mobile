@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import { Text } from 'react-native';
+
 import {
   ModalTitle,
   ConfigModal,
@@ -70,15 +70,14 @@ const Details = ({ label, detail }) => (
   </>
 );
 const Status = ({ item }) => {
-  const { isProblem, isCanceled, already, dispatched } = item;
-  console.warn(isProblem, isCanceled, already, dispatched);
+  const { already, dispatched, isCanceled } = item;
   return (
     <StatusText>
-      {item.canceled_at
+      {isCanceled
         ? 'Entrega cancelada'
-        : item.start_date && item.end_date
+        : already && dispatched
         ? 'Entrega realizada'
-        : item.start_date && !item.end_date
+        : already && !dispatched
         ? 'Entrega em andamento'
         : 'Pronto para retirada'}
     </StatusText>
@@ -86,7 +85,6 @@ const Status = ({ item }) => {
 };
 
 export function ModalDetail({ isVisible, title, toogleFunction, item }) {
-  console.warn(item);
   item = {
     address: `${item?.recipients?.street} - N° ${item?.recipients?.number},  ${item?.recipients?.complement}`,
     complement: `${item?.recipients?.complement}`,
@@ -95,10 +93,10 @@ export function ModalDetail({ isVisible, title, toogleFunction, item }) {
     name: item?.recipients?.name,
 
     cep: item?.recipients?.cep,
-    isProblem: item?.isProblem,
-    isCanceled: item?.canceled_at === true,
-    already: item?.start_date === true,
-    dispatched: item?.end_date === true,
+
+    isCanceled: item?.canceled_at,
+    already: item?.start_date,
+    dispatched: item?.end_date,
   };
   return (
     <ConfigModal isVisible={isVisible}>
@@ -112,7 +110,6 @@ export function ModalDetail({ isVisible, title, toogleFunction, item }) {
         </TouchableModalButton>
         <ModalTitle>{title}</ModalTitle>
         <Details detail={item.name} label="Destinatário" />
-
         <Details detail={item.address} label="Endereço" />
         <Details detail={item.cep} label="CEP" />
         <Details detail={item.product} label="Produto" />

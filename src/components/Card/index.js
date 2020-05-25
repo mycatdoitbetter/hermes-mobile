@@ -60,10 +60,21 @@ export function CardPack(
   );
 }
 
-export function CardProblem(item, navigation) {
+export function CardProblem(
+  item,
+  navigation,
+  setIsModalVisible,
+  isModalVisible,
+  setPackOnDetail
+) {
   return (
     <CardContainer>
-      <Touch>
+      <Touch
+        onPress={() => {
+          setPackOnDetail(item);
+          setIsModalVisible(!isModalVisible);
+        }}
+      >
         <InfoIcon />
       </Touch>
 

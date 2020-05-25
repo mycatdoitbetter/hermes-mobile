@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { TouchableOpacity } from 'react-native';
 // import { useDispatch, useSelector } from 'react-redux';
 
 import {} from '../../store/modules/auth/actions';
+import { ModalDetail } from '../../components/Modal';
 
 import { Container, PackList } from './styles';
 import Logo from '../../utils/logo';
 import images from '../../utils/images';
 import { CardProblem } from '../../components/Card';
+import api from '../../services/api';
 
 export default function Packs({ navigation }) {
   // const user = useSelector((state) => state.user.profile);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [packOnDetail, setPackOnDetail] = useState(false);
+  const [fetch, setFetch] = useState(false);
+  const [packs, setPacks] = useState([]);
+  async function getPacks() {
+    try {
+      setFetch(true);
+      const response = await api.get('/problems/list');
+
+      setPacks(response.data);
+      setFetch(false);
+    } catch (error) {
+      console.log(error);
+      setFetch(false);
+    }
+  }
+  useEffect(() => {
+    getPacks();
+  }, []);
   const packsMock = [
     {
       id: 1,
-      isProblem: true,
+
       title: 'Titulo do problema',
       description: 'Corpo do problema',
       packages: {
@@ -48,10 +69,14 @@ export default function Packs({ navigation }) {
       },
     },
   ];
-
   const renderPacks = ({ item }) => {
-    // console.warn(item);
-    return CardProblem(item, navigation);
+    return CardProblem(
+      item,
+      navigation,
+      setIsModalVisible,
+      isModalVisible,
+      setPackOnDetail
+    );
   };
 
   // const dispatch = useDispatch();
@@ -59,9 +84,17 @@ export default function Packs({ navigation }) {
     <Container>
       <Logo source={images.logo} />
       <PackList
-        data={packsMock}
+        refreshing={fetch}
+        onRefresh={() => getPacks()}
+        data={packs}
         renderItem={(pack) => renderPacks(pack)}
         keyExtractor={({ id }) => String(id)}
+      />
+      <ModalDetail
+        isVisible={isModalVisible}
+        toogleFunction={setIsModalVisible}
+        title="Detalhes"
+        item={packOnDetail.packages}
       />
     </Container>
   );

@@ -24,8 +24,8 @@ export const ModalTitle = styled.Text`
   top: 0;
   margin: 10px;
 
-  font-size: 25px;
-  /* font-weight: bold; */
+  font-size: 22px;
+  font-weight: bold;
   color: #fff;
 `;
 
@@ -76,15 +76,15 @@ export const FlagItem = styled(Flag)`
 
 export const Label = styled.Text`
   color: #333333;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
 `;
 
 export const Description = styled.Text`
   color: #ffff;
-  font-size: 16px;
+  font-size: 17px;
   text-align: center;
   font-weight: bold;
   /* margin-bottom: 10px; */
