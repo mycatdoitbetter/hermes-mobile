@@ -8,61 +8,20 @@ export const Container = styled.View`
   background-color: #4baf4f;
 `;
 
-export const PackContainer = styled.View`
-  width: 80%;
-  background-color: #f3f9e3;
-  height: 168px;
-  margin: 10px;
-  border-radius: 8px;
-  align-self: center;
-`;
-
-export const PackTitle = styled.Text`
+export const TextWarning = styled.Text`
   font-weight: bold;
-  color: #314e5e;
-  font-size: 16px;
+  color: #ffff;
+  font-size: 20px;
   align-self: center;
   text-align: center;
-  margin-top: -40px;
-  width: 65%;
+  /* height: 100%; */
+  /* margin-bottom: 10px; */
 `;
-export const PackDetail = styled.Text`
-  font-weight: bold;
-  color: #666666;
-  font-size: 16px;
-
-  align-self: flex-start;
-  margin: 5px;
-  margin-left: 10px;
-`;
-export const PackDescription = styled.Text`
-  font-weight: bold;
-  color: #314e5e;
-  font-size: 16px;
-  text-align: center;
-  align-self: flex-start;
-  margin: 10px;
-`;
-export const PackDetails = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const ReportProblem = styled.Text`
-  font-weight: bold;
-  color: #f97068;
-  font-size: 16px;
+export const IconWarning = styled(Icon).attrs({ size: 36 })`
+  color: #ffff;
   align-self: center;
-  margin-bottom: 10px;
-`;
-
-export const Touch = styled.TouchableOpacity``;
-
-export const InfoIcon = styled(Icon).attrs({ name: 'info', size: 27 })`
-  color: #314e5e;
-  align-self: flex-end;
-  margin: 10px;
+  /* height: 100%; */
+  margin: 10px 0 70px;
 `;
 
 export const PackList = styled(FlatList)``;

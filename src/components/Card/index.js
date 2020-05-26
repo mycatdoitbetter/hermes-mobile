@@ -53,7 +53,15 @@ export function CardPack(
         </CardDetail>
       </CardDetails>
 
-      <Touch onPress={() => navigation.navigate('Report')}>
+      <Touch
+        onPress={() =>
+          navigation.navigate('Report', {
+            id: item.id,
+            packName: item.product,
+            recipientName: item.recipients.name,
+          })
+        }
+      >
         <ReportProblem>Problemas com a entrega?</ReportProblem>
       </Touch>
     </CardContainer>

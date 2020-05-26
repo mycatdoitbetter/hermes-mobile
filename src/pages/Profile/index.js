@@ -4,7 +4,6 @@ import Flag from 'react-native-flags';
 import { useDispatch, useSelector } from 'react-redux';
 import { showImagePicker } from '../../config/imagePicker';
 import { signOut } from '../../store/modules/auth/actions';
-import { updateLocalAvatar } from '../../store/modules/user/actions';
 import { Modal, ModalList } from '../../components/Modal';
 import {
   Container,
