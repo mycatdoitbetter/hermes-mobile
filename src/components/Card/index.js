@@ -100,7 +100,17 @@ export function CardProblem(
           <CardDescription>{item.packages.product}</CardDescription>{' '}
         </CardDetail>
       </CardDetails>
-      <Touch onPress={() => navigation.navigate('Reports')}>
+      <Touch
+        onPress={() =>
+          navigation.navigate('Reports', {
+            title: item.title,
+            description: item.description,
+            product: item.packages.product,
+            recipientName: item.packages.recipients.name,
+            deliveryman: item.packages.deliveryman.name,
+          })
+        }
+      >
         <ReportProblem>Entenda o problema</ReportProblem>
       </Touch>
     </CardContainer>

@@ -11,7 +11,7 @@ import images from '../../utils/images';
 import { CardProblem } from '../../components/Card';
 import api from '../../services/api';
 
-export default function Problems({ navigation, route }) {
+export default function Problems({ navigation }) {
   // const user = useSelector((state) => state.user.profile);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [packOnDetail, setPackOnDetail] = useState(false);
