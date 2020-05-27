@@ -12,20 +12,26 @@
 
 </p>
 
-<table border="0">
+<table border="0" align="center"> 
   <tr align="center">
-     <td><b style="font-size:30px">Title</b></td>
-     <td><b style="font-size:30px">Title 2</b></td>
+     <td><b style="font-size:23px">Login and password recovery</b></td>
+     <td><b style="font-size:23px">App main navigation</b></td>
+     <td><b style="font-size:23px">Recording pack problems</b></td>
   </tr>
   <tr align="center">
+    <td>
+      <p>
+        <img width="337" height="664" src="demo/login.gif">
+       </p>
+     </td>
      <td>
        <p>
-        <img width="337" height="664" src="demo/recording.gif">
+        <img width="337" height="664" src="demo/navigation.gif">
        </p>
      </td>
      <td>
       <p>
-        <img width="337" height="664" src="demo/navigation.gif">
+        <img width="337" height="664" src="demo/recording.gif">
        </p>
      </td>
   </tr>
