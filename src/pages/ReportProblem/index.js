@@ -23,7 +23,7 @@ export default function ReportProblem({ route, navigation }) {
     try {
       setFetch(true);
 
-      const response = await api.post(
+      await api.post(
         '/problems/create',
         { title, description },
         {
