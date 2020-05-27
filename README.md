@@ -1,5 +1,6 @@
 <h1 align="center">Hermes</h1>
-<p align="center">Hermes is a android aplication for managemento of delivery packs.</h1>
+<p align="center">Hermes is a android aplication for managemento of delivery packs.</p>
+<p align="center" style="text-align: center;">For this application, i've used my on API build in Nodejs, you can fint the git repository <a href="https://github.com/mycatdoitbetter/hermes-backend">here!</a></a></p>
 
 <p align="center">
   
@@ -37,3 +38,13 @@
   </tr>
  </table>
 
+ To init this application,you can install your real device or in a emulator, doing:
+ ```bash
+ cd hermes-mobile
+ yarn
+ yarn android
+ ```
+In some cases, the bundle will not start, so, do you have to init with:
+```bash
+yarn start
+```
