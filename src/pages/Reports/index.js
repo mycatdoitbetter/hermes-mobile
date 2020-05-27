@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
-import { Alert, ActivityIndicator } from 'react-native';
-import api from '../../services/api';
+import React from 'react';
+
 import {
   Container,
-  ViewProblemDescription,
-  InputProblemDescription,
   ProblemDescription,
-  InputProblemTitle,
   Assignature,
   ProblemTitle,
   TextProblemPack,
   ViewProblemPack,
 } from './styles';
 
-export default function ReportProblem({ route, navigation }) {
+export default function ReportProblem({ route }) {
   const {
     title,
     description,
@@ -25,8 +21,10 @@ export default function ReportProblem({ route, navigation }) {
   return (
     <Container>
       <ViewProblemPack>
-        <TextProblemPack>{`Destinatário: ${recipientName}`}</TextProblemPack>
-        <TextProblemPack>{`Produto: ${product}`}</TextProblemPack>
+        <TextProblemPack>Destinatário</TextProblemPack>
+        <TextProblemPack>{`${recipientName}`}</TextProblemPack>
+        <TextProblemPack>Produto</TextProblemPack>
+        <TextProblemPack>{`${product}`}</TextProblemPack>
       </ViewProblemPack>
       <ProblemTitle>{`${title}`}</ProblemTitle>
       <ViewProblemPack>

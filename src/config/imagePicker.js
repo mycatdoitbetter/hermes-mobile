@@ -1,12 +1,12 @@
 import ImagePicker from 'react-native-image-picker';
 import FormData from 'form-data';
-import axios from 'axios';
 import api from '../services/api';
 
 export const options = {
   title: 'Selecione um novo avatar',
-  // allowsEditing: false,
-
+  chooseFromLibraryButtonTitle: 'Escolher na biblioteca',
+  takePhotoButtonTitle: 'Tirar foto agora',
+  cancelButtonTitle: 'Cancelar',
   storageOptions: {
     skipBackup: true,
     path: 'images',
@@ -26,15 +26,7 @@ export function showImagePicker(setuploadedAvatar) {
     const source = { uri: `data:image/jpeg;base64,${response.data}` };
     const formData = new FormData();
     formData.append('file', source);
-    try {
-      await api.post('/files', formData, {
-        headers: {
-          'content-type': 'multipart/form-data',
-        },
-      });
-    } catch (error) {
-      console.warn(error);
-    }
+
     setuploadedAvatar(source);
   });
 }

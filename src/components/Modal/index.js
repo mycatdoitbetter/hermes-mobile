@@ -34,14 +34,26 @@ export function Modal({ isVisible, title, toogleFunction }) {
   );
 }
 
-const ListMount = (item) => (
-  <ItemContainer>
-    <TextItem>{item.label}</TextItem>
-    <FlagItem code={item.code} />
-  </ItemContainer>
-);
-
-export function ModalList({ isVisible, title, toogleFunction, data }) {
+export function ModalList({
+  isVisible,
+  title,
+  toogleFunction,
+  data,
+  setFunction,
+}) {
+  const ListMount = (item) => {
+    return (
+      <ItemContainer
+        onPress={() => {
+          setFunction(item.code);
+          toogleFunction(false);
+        }}
+      >
+        <TextItem>{item.label}</TextItem>
+        <FlagItem code={item.code} />
+      </ItemContainer>
+    );
+  };
   return (
     <ConfigModal isVisible={isVisible}>
       <ModalView>

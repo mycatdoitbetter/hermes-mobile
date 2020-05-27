@@ -4,12 +4,12 @@ import Icon from 'react-native-vector-icons/Feather';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #4baf4f;
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 export const PackContainer = styled.View`
   width: 80%;
-  background-color: #f3f9e3;
+  background-color: ${({ theme }) => theme.secondary};
   height: 168px;
   margin: 10px;
   border-radius: 8px;
@@ -18,7 +18,7 @@ export const PackContainer = styled.View`
 
 export const PackTitle = styled.Text`
   font-weight: bold;
-  color: #314e5e;
+  color: ${({ theme }) => theme.tertiary};
   font-size: 16px;
   align-self: center;
   text-align: center;
@@ -27,7 +27,7 @@ export const PackTitle = styled.Text`
 `;
 export const PackDetail = styled.Text`
   font-weight: bold;
-  color: #666666;
+  color: ${({ theme }) => theme.textLabel};
   font-size: 16px;
 
   align-self: flex-start;
@@ -36,7 +36,7 @@ export const PackDetail = styled.Text`
 `;
 export const PackDescription = styled.Text`
   font-weight: bold;
-  color: #314e5e;
+  color: ${({ theme }) => theme.tertiary};
   font-size: 16px;
   text-align: center;
   align-self: flex-start;
@@ -50,7 +50,7 @@ export const PackDetails = styled.View`
 
 export const ReportProblem = styled.Text`
   font-weight: bold;
-  color: #f97068;
+  color: ${({ theme }) => theme.highlight};
   font-size: 16px;
   align-self: center;
   margin-bottom: 10px;
@@ -59,9 +59,23 @@ export const ReportProblem = styled.Text`
 export const Touch = styled.TouchableOpacity``;
 
 export const InfoIcon = styled(Icon).attrs({ name: 'info', size: 27 })`
-  color: #314e5e;
+  color: ${({ theme }) => theme.tertiary};
   align-self: flex-end;
   margin: 10px;
 `;
 
 export const PackList = styled(FlatList)``;
+
+export const TextWarning = styled.Text`
+  font-weight: bold;
+  color: ${({ theme }) => theme.secondary};
+  font-size: 20px;
+  align-self: center;
+  text-align: center;
+`;
+export const IconWarning = styled(Icon).attrs({ size: 36 })`
+  color: ${({ theme }) => theme.secondary};
+  align-self: center;
+
+  margin: 10px 0 70px;
+`;

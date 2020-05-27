@@ -1,10 +1,9 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
-import colors from '../../utils/colors';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 export const LogoAndNameImage = styled.Image`
@@ -22,15 +21,14 @@ export const AvoidingView = styled.KeyboardAvoidingView`
 
 export const LoginText = styled.Text`
   align-self: center;
-  color: #fff;
+  color: ${({ theme }) => theme.secondary};
   font-size: 16px;
   font-weight: 600;
   position: relative;
-  /* bottom: 0px; */
 `;
 
 export const SubmitButton = styled(RectButton)`
-  background-color: #314e5e;
+  background-color: ${({ theme }) => theme.tertiary};
   opacity: 0.8;
   border-radius: 8px;
   width: 75%;
@@ -46,6 +44,6 @@ export const ForgotPasswordTouchable = styled.TouchableOpacity`
 
 export const SubmitText = styled.Text`
   font-size: 18px;
-  color: #fff;
+  color: ${({ theme }) => theme.secondary};
   font-weight: 700;
 `;

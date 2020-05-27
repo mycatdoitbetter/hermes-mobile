@@ -33,33 +33,20 @@ export default function ReportProblem({ route, navigation }) {
         }
       );
       setFetch(false);
-      console.warn(response.status);
     } catch (error) {
       setFetch(false);
       console.warn(error);
     }
   }
-  function VerifyEntry(t, d) {
-    if (t.length <= 1) {
-      return (
-        <TextProblemPack>
-          Preencha os campos para gravar o problema
-        </TextProblemPack>
-      );
-    }
-    if (d.length <= 1) {
-      return (
-        <TextProblemPack>
-          Preencha os campos para gravar o problema
-        </TextProblemPack>
-      );
-    }
-  }
+
   return (
     <Container>
       <ViewProblemPack>
-        <TextProblemPack>{`Destinatário: ${recipientName}`}</TextProblemPack>
-        <TextProblemPack>{`Produto: ${packName}`}</TextProblemPack>
+        <TextProblemPack>Destinatário:</TextProblemPack>
+        <TextProblemPack>{`${recipientName}`}</TextProblemPack>
+        <TextProblemPack />
+        <TextProblemPack>Produto:</TextProblemPack>
+        <TextProblemPack>{`${packName}`}</TextProblemPack>
       </ViewProblemPack>
       <ViewProblemTitle>
         <InputProblemTitle

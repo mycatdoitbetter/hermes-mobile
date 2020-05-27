@@ -3,15 +3,15 @@ import styled from 'styled-components/native';
 export const LoginInput = styled.TextInput`
   width: 100%;
   padding-left: 10px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: ${({ theme }) => theme.opacityWhite};
   height: 40px;
   border-radius: 8px;
   font-size: 16px;
-  color: #fff;
+  color: ${({ theme }) => theme.secondary};
 `;
 
 export const InputLabel = styled.Text`
-  color: #fff;
+  color: ${({ theme }) => theme.secondary};
   font-size: 16px;
   font-weight: 600;
   margin: 5px;

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
-import Flag from 'react-native-flags';
 import { useDispatch, useSelector } from 'react-redux';
+import Flag from 'react-native-flags';
+import { ThemeContext } from '../../App';
 import { showImagePicker } from '../../config/imagePicker';
 import { signOut } from '../../store/modules/auth/actions';
 import { Modal, ModalList } from '../../components/Modal';
@@ -25,15 +26,16 @@ import {
 export default function Profile() {
   const user = useSelector((state) => state.user.profile);
   const avatar = useSelector((state) => state.user.avatar);
-  console.warn(user.avatar.url);
 
-  const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState(false);
   const [uploadedAvatar, setuploadedAvatar] = useState(avatar);
   const [isInfoModalVisible, setInfoModalVisible] = useState(false);
   const [isLanguageModalVisible, setLanguageModalVisible] = useState(false);
   const [actualLanguage, setActualLanguage] = useState('BR');
 
   const dispatch = useDispatch();
+
+  const actualTheme = useContext(ThemeContext);
 
   const languages = [
     { label: 'Português do Brasil', code: 'BR' },
@@ -106,7 +108,10 @@ export default function Profile() {
           {theme ? <IconProfile name="sun" /> : <IconProfile name="moon" />}
           <ConfigSwitchTheme
             value={theme}
-            onValueChange={() => setTheme(!theme)}
+            onValueChange={() => {
+              actualTheme();
+              setTheme(!theme);
+            }}
             style={{ transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }] }}
           />
         </ConfigView>
@@ -157,6 +162,7 @@ export default function Profile() {
         isVisible={isLanguageModalVisible}
         title="Linguagens"
         toogleFunction={setLanguageModalVisible}
+        setFunction={setActualLanguage}
         data={languages}
       />
     </Container>

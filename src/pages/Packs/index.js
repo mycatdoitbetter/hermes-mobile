@@ -9,12 +9,9 @@ import images from '../../utils/images';
 import { CardPack } from '../../components/Card';
 
 export default function Packs({ navigation }) {
-  // const user = useSelector((state) => state.user.profile);
-  // const [isExpanded, setExpanded] = useState(true);
   const [packs, setPacks] = useState([]);
   const [fetch, setIsFetch] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [load, setLoad] = useState({});
   const [packOnDetail, setPackOnDetail] = useState({});
 
   async function getPacks() {
@@ -31,14 +28,14 @@ export default function Packs({ navigation }) {
   }
   useEffect(() => {
     getPacks();
-  }, [load]);
+  }, []);
 
   function emptyListWarn() {
     return (
       <Container>
         <IconWarning name="chevron-down" />
         <TextWarning>Você não possui entregas cadastradas</TextWarning>
-        {/* <IconWarning name="frown" /> */}
+
         <TextWarning>Deslize para baixo para atualizar!</TextWarning>
       </Container>
     );

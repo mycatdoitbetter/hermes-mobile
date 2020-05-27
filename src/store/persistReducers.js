@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'storage',
       storage,
-      whitelist: ['auth', 'user'],
+      whitelist: ['auth', 'user', 'configs'],
     },
     reducers
   );

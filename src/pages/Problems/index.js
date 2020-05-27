@@ -5,14 +5,13 @@ import React, { useState, useEffect } from 'react';
 import {} from '../../store/modules/auth/actions';
 import { ModalDetail } from '../../components/Modal';
 
-import { Container, PackList } from './styles';
+import { Container, PackList, TextWarning, IconWarning } from './styles';
 import Logo from '../../utils/logo';
 import images from '../../utils/images';
 import { CardProblem } from '../../components/Card';
 import api from '../../services/api';
 
 export default function Problems({ navigation }) {
-  // const user = useSelector((state) => state.user.profile);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [packOnDetail, setPackOnDetail] = useState(false);
   const [fetch, setFetch] = useState(false);
@@ -32,43 +31,7 @@ export default function Problems({ navigation }) {
   useEffect(() => {
     getPacks();
   }, []);
-  const packsMock = [
-    {
-      id: 1,
 
-      title: 'Titulo do problema',
-      description: 'Corpo do problema',
-      packages: {
-        id: 1,
-        product: 'Sapato',
-        start_date: null,
-        recipients: {
-          id: 1,
-          name: 'André Novo',
-          cpf: '60032270329',
-          street: 'Serra da Arratanha',
-          number: '600',
-          complement: 'Jardins da serra, q11 lt22',
-          state: 'CE',
-          city: 'Maracanaú',
-          cep: '61910000',
-        },
-        deliveryman: {
-          id: 2,
-          name: 'deliveryman',
-          avatar: {
-            url:
-              'http://localhost:3333/files/d312546e15131238955d92d8629b55b2.jpg',
-            id: 1,
-            name: 'foto_perfil.jpg',
-            path: 'd312546e15131238955d92d8629b55b2.jpg',
-            createdAt: '2020-05-08T19:44:39.703Z',
-            updatedAt: '2020-05-08T19:44:39.703Z',
-          },
-        },
-      },
-    },
-  ];
   const renderPacks = ({ item }) => {
     return CardProblem(
       item,
@@ -78,6 +41,16 @@ export default function Problems({ navigation }) {
       setPackOnDetail
     );
   };
+  function emptyListWarn() {
+    return (
+      <Container>
+        <IconWarning name="chevron-down" />
+        <TextWarning>Você não possui entregas cadastradas</TextWarning>
+        {/* <IconWarning name="frown" /> */}
+        <TextWarning>Deslize para baixo para atualizar!</TextWarning>
+      </Container>
+    );
+  }
 
   // const dispatch = useDispatch();
   return (
@@ -85,6 +58,7 @@ export default function Problems({ navigation }) {
       <Logo source={images.logo} />
       <PackList
         refreshing={fetch}
+        ListEmptyComponent={emptyListWarn()}
         onRefresh={() => getPacks()}
         data={packs}
         renderItem={(pack) => renderPacks(pack)}

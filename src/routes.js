@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Icon from 'react-native-vector-icons/Feather';
+
+import { ThemeContext } from 'styled-components';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -17,13 +19,13 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
-const headerConfig = (title) => ({
+const headerConfig = (title, theme) => ({
   title,
   headerStyle: {
     elevation: 0,
-    backgroundColor: '#4BAF4F',
+    backgroundColor: theme.primary,
   },
-  headerTintColor: '#fff',
+  headerTintColor: theme.secondary,
   headerTitleAlign: 'center',
 });
 
@@ -32,14 +34,18 @@ const iconTabConfig = (label, iconName) => ({
   tabBarIcon: ({ color }) => <Icon name={iconName} color={color} size={28} />,
 });
 
-const tabConfig = () => ({
-  activeTintColor: '#314E5E',
-  inactiveTintColor: '#F3F9E3',
+const tabConfig = (theme) => ({
+  activeTintColor: theme.tabBarOn,
+  inactiveTintColor: theme.tabBarOff,
   labelStyle: { fontSize: 14, fontWeight: '700' },
-  style: { backgroundColor: '#4BAF4F', borderTopColor: '#4BAF4F' },
+  style: {
+    backgroundColor: theme.primary,
+    borderTopColor: theme.primary,
+  },
 });
 
 export function PackStack() {
+  const themeContext = useContext(ThemeContext);
   return (
     <Stack.Navigator initialRouteName="Packs">
       <Stack.Screen
@@ -50,12 +56,13 @@ export function PackStack() {
       <Stack.Screen
         name="Report"
         component={ReportProblem}
-        options={headerConfig('Descreva o problema')}
+        options={headerConfig('Relate o problema', themeContext)}
       />
     </Stack.Navigator>
   );
 }
 export function LoginStack() {
+  const themeContext = useContext(ThemeContext);
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -66,12 +73,14 @@ export function LoginStack() {
       <Stack.Screen
         name="ForgotPassword"
         component={ForgotPassword}
-        options={headerConfig('Esqueceu sua senha?')}
+        options={headerConfig('Esqueceu sua senha?', themeContext)}
       />
     </Stack.Navigator>
   );
 }
 export function ProblemStack() {
+  const themeContext = useContext(ThemeContext);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -82,15 +91,20 @@ export function ProblemStack() {
       <Stack.Screen
         name="Reports"
         component={Reports}
-        options={headerConfig('Entenda o problema')}
+        options={headerConfig('Entenda o problema', themeContext)}
       />
     </Stack.Navigator>
   );
 }
 
 export function DeliverymanTabs() {
+  const themeContext = useContext(ThemeContext);
+
   return (
-    <Tab.Navigator tabBarOptions={tabConfig()}>
+    <Tab.Navigator
+      tabBarOptions={tabConfig(themeContext)}
+      initialRouteName="Packs"
+    >
       <Tab.Screen
         name="Packs"
         component={PackStack}
