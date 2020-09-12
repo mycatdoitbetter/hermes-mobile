@@ -1,4 +1,6 @@
-<h1 align="center">Hermes</h1>
+<p align="center">
+  <img src="src/assets/logo.png" height="150px">
+</p>
 <p align="center">Hermes is a android aplication for managemento of delivery packs.</p>
 <p align="center" style="text-align: center;">For this application, i've used my on API build in Nodejs, you can fint the git repository <a href="https://github.com/mycatdoitbetter/hermes-backend">here!</a></a></p>
 
