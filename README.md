@@ -22,17 +22,17 @@
   <tr align="center">
     <td>
       <p>
-        <img width="337" height="604" src="demo/login.gif">
+        <img width="337" height="auto" src="demo/login.gif">
        </p>
      </td>
      <td>
        <p>
-        <img width="337" height="604" src="demo/navigation.gif">
+        <img width="337" height="auto" src="demo/navigation.gif">
        </p>
      </td>
      <td>
       <p>
-        <img width="337" height="604" src="demo/recording.gif">
+        <img width="337" height="auto" src="demo/recording.gif">
        </p>
      </td>
   </tr>
